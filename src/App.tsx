@@ -17,16 +17,18 @@ function App() {
   const [ completeCount, setComplete ] = useState<number>(0);
   const [ incompleteCount, setIncomplete ] = useState<number>(1);
   const onChangeText = (event: ChangeEvent<HTMLInputElement>) => setTodoText(event.target.value);
+  const updateCounts = (newTodos: Array<todo>) => {
+    setTotal(newTodos.length);
+    setIncomplete(newTodos.filter(todo => !todo.completed).length);
+    setComplete(newTodos.filter(todo => todo.completed).length);
+  };
 
   const onClickAdd = () => {
     if (todoText === "") return;
     const newTodos = [...todos,{task: todoText, completed: false}];
     setTodos(newTodos);
     setTodoText('');
-    const newTotalTodo = totalTodo + 1;
-    setTotal(newTotalTodo);
-    const newIncompleteCount = incompleteCount + 1;
-    setIncomplete(newIncompleteCount);
+    updateCounts(newTodos);
   };
 
   const onClickEdit = (index: number) => {
@@ -39,15 +41,16 @@ function App() {
       const newTodos = [...todos];
       newTodos.splice(index,1);
       setTodos(newTodos);
-      const newTotalTodo = totalTodo - 1;
-      setTotal(newTotalTodo);
-      const newIncompleteCount = incompleteCount - 1;
-      setIncomplete(newIncompleteCount);
+      updateCounts(newTodos);
     }
   }
 
   const onClickToggle = (index: number) => {
-    alert(index);
+    const newTodos = todos.map((todo, i) =>
+      i === index ? { ...todo, completed: !todo.completed } : todo
+    );
+    setTodos(newTodos);
+    updateCounts(newTodos);
   }
 
   return (
