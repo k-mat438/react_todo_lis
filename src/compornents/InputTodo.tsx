@@ -1,12 +1,13 @@
 import React, { ChangeEvent, FC } from 'react';
 
-interface InputTodoProps {
+type InputTodoProps = {
   todoText: string;
   onChangeText: (event: ChangeEvent<HTMLInputElement>) => void;
   onClickAdd: () => void;
 }
 
-export const InputTodo: FC<InputTodoProps> = ({ todoText, onChangeText, onClickAdd }) => {
+export const InputTodo: FC<InputTodoProps> = (props) => {
+  const { todoText, onChangeText, onClickAdd } = props;
   return (
     <div>
       <input type="text" value={todoText} onChange={onChangeText} />
