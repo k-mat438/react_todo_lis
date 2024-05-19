@@ -23,10 +23,12 @@ function App() {
   }
 
   const onClickDelete = (index: number) => {
-    alert(index);
-    const newTodos = [...todos];
-    newTodos.splice(index,1);
-    setTodos(newTodos);
+    let result = window.confirm('本当に削除しますか');
+    if (result) {
+      const newTodos = [...todos];
+      newTodos.splice(index,1);
+      setTodos(newTodos);
+    }
   }
 
   return (
