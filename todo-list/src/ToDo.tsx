@@ -1,18 +1,23 @@
 type TodoType = {
   todos: Array<string>;
+  onClickEdit: (index: number) => void;
+  onClickDelete: (index: number) => void;
 }
 
 export const ToDo = (props: TodoType) => {
-  const { todos } = props
+  const { todos, onClickEdit, onClickDelete } = props;
+  
   return(
-    <div>
-      {/* <ul> */}
-        {/* <li> */}
-          <p>{todos}</p>
-          <button>編集</button>
-          <button>削除</button>
-        {/* </li> */}
-      {/* </ul> */}
-    </div>
+      <ul>
+        <div>
+          {todos.map((todo, index) => (
+            <li key={index}>
+              <p>{todo}</p>
+              <button onClick={() => onClickEdit(index)}>編集</button>
+              <button onClick={() => onClickDelete(index)}>削除</button>
+            </li>
+          ))}
+        </div>       
+      </ul>
   )
 }

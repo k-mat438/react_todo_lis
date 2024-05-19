@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent } from 'react';
 import './App.css';
 import { ToDo } from "./ToDo";
 import { TaskCounter } from "./TaskCounter";
-// import { InputTodo } from "./InputTodo";
+import { InputTodo } from "./InputTodo";
 
 
 function App() {
@@ -13,19 +13,29 @@ function App() {
 
   const onClickAdd = () => {
     if (todoText === "") return;
-    const newTodos = [...todos,todoText]
-    setTodos(newTodos)
+    const newTodos = [...todos,todoText];
+    setTodos(newTodos);
+    setTodoText('');
   };
 
+  const onClickEdit = (index: number) => {
+    alert(index)
+  }
+
+  const onClickDelete = (index: number) => {
+    alert(index);
+    const newTodos = [...todos];
+    newTodos.splice(index,1);
+    setTodos(newTodos);
+  }
+
   return (
-    <div className="App">
+    <>
       <h1>ToDo List</h1>
-      {/* <InputTodo /> */}
-      <input type="text" value={todoText} onChange={onChangeText}/>
-      <button onClick={onClickAdd}>Save</button>
+      <InputTodo todoText={todoText} onChangeText={onChangeText} onClickAdd={onClickAdd}/>
       <TaskCounter />
-      <ToDo todos={todos}/>
-    </div>
+      <ToDo todos={todos} onClickEdit={onClickEdit} onClickDelete={onClickDelete}/>
+    </>
   );
 }
 
