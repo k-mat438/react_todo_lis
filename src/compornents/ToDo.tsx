@@ -4,7 +4,7 @@ import { TodoListType } from "../types/todoList";
 
 export const ToDo: FC<TodoListType> = (props) => {
   const { todos, onClickEdit, onClickDelete, onClickToggle, editText, onChangeEditText, onClickEditSave} = props;
-  
+  const editingBool = todos.some(todo => todo.editing === true)
   return(
       <ul>
         <div>
@@ -16,7 +16,7 @@ export const ToDo: FC<TodoListType> = (props) => {
               ) : (
                 <p>{todo.task}</p>
               )}
-              {todo.editing ? (<></>) : (<button onClick={() => onClickEdit(index)}>編集</button>)}
+              {editingBool ? (<></>) : (<button onClick={() => onClickEdit(index)}>編集</button>)}
               <button onClick={() => onClickDelete(index)}>削除</button>
             </li>
           ))}

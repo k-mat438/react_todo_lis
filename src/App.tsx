@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent } from 'react';
 import './App.css';
 import { ToDo } from "./compornents/ToDo";
 import { TaskCounter } from "./compornents/TaskCounter";
@@ -31,9 +31,10 @@ function App() {
   };
 
   const onClickEdit = (index: number) => {
-    const newTodos = [...todos];
-    newTodos[index].editing = true; 
-    setTodos(newTodos);
+    const editTodos = [...todos];
+    editTodos[index].editing = true; 
+    setTodos(editTodos);
+    setEditText(editTodos[index].task);
   }
 
   const onClickEditSave = (index: number) => {
@@ -41,6 +42,7 @@ function App() {
     if (editText === "") return;
     newTodos[index].task = editText;
     newTodos[index].editing = false;
+    setEditText('');
     setTodos(newTodos);
   }
 

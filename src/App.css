@@ -1,10 +1,19 @@
-
 h1 {
   color: #333;
   text-align: center;
 }
 
-input, button {
+.Area {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+
+.addInput {
+  width: 30%;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  font-size: 16px;
   padding: 8px;
   margin: 5px;
 }
@@ -14,23 +23,32 @@ button {
   color: white;
   border: none;
   border-radius: 5px;
-}
-
-ul {
-  width: 50%;
-  margin-right: auto;
-  margin-left: auto;
+  padding: 8px;
+  margin: 5px;
 }
 
 button:hover {
   background-color: #0056b3;
 }
 
+.counter {
+  padding: 0 3%;
+}
+
+.variable {
+  font-weight: bold;
+}
+
+ul {
+  width: 50%;
+  margin: 0 auto;
+}
+
 .ToDo-item {
   background-color: #f9f9f9;
   border: 1px solid #ddd;
   padding: 7px;
-  margin-top: 5px;
+  margin-top: 10px;
   display: flex;
   align-items: center;
 }
@@ -39,7 +57,7 @@ button:hover {
   margin-right: 10px;
 }
 
-.ToDo-item p {
+.ToDo-item p, .editInput {
   flex-grow: 1;
   margin: 0;
 }
