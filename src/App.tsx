@@ -3,20 +3,19 @@ import './App.css';
 import { ToDo } from "./compornents/ToDo";
 import { TaskCounter } from "./compornents/TaskCounter";
 import { InputTodo } from "./compornents/InputTodo";
-
-type todo = {
-  task: string;
-  completed: boolean;
-}
+import { todo } from "./types/todo"
 
 function App() {
-  const [ todoText, setTodoText ] = useState<string>("");
-  const [ todos, setTodos ] = useState<Array<todo>>([{task: "タスク1", completed:false}]);
+  const [ todoText, setTodoText ] = useState<string>('');
+  const [ todos, setTodos ] = useState<Array<todo>>([{task: "タスク1", completed:false, editing:false}]);
 
   const [ totalTodo, setTotal ] = useState<number>(1);
   const [ completeCount, setComplete ] = useState<number>(0);
   const [ incompleteCount, setIncomplete ] = useState<number>(1);
+  const [ editText, setEditText ] = useState<string>('');
+
   const onChangeText = (event: ChangeEvent<HTMLInputElement>) => setTodoText(event.target.value);
+  const onChangeEditText = (event: ChangeEvent<HTMLInputElement>) => setEditText(event.target.value);
   const updateCounts = (newTodos: Array<todo>) => {
     setTotal(newTodos.length);
     setIncomplete(newTodos.filter(todo => !todo.completed).length);
@@ -25,14 +24,24 @@ function App() {
 
   const onClickAdd = () => {
     if (todoText === "") return;
-    const newTodos = [...todos,{task: todoText, completed: false}];
+    const newTodos = [...todos,{task: todoText, completed: false, editing:false}];
     setTodos(newTodos);
     setTodoText('');
     updateCounts(newTodos);
   };
 
   const onClickEdit = (index: number) => {
-    alert(index);
+    const newTodos = [...todos];
+    newTodos[index].editing = true; 
+    setTodos(newTodos);
+  }
+
+  const onClickEditSave = (index: number) => {
+    const newTodos = [...todos];
+    if (editText === "") return;
+    newTodos[index].task = editText;
+    newTodos[index].editing = false;
+    setTodos(newTodos);
   }
 
   const onClickDelete = (index: number) => {
@@ -58,7 +67,7 @@ function App() {
       <h1>ToDo List</h1>
       <InputTodo todoText={todoText} onChangeText={onChangeText} onClickAdd={onClickAdd}/>
       <TaskCounter total={totalTodo} complete={completeCount} incomplete={incompleteCount}/>
-      <ToDo todos={todos} onClickEdit={onClickEdit} onClickDelete={onClickDelete} onClickToggle={onClickToggle}/>
+      <ToDo todos={todos} onClickEdit={onClickEdit} onClickDelete={onClickDelete} onClickToggle={onClickToggle} editText={editText} onChangeEditText={onChangeEditText} onClickEditSave={onClickEditSave}/>
     </>
   );
 }

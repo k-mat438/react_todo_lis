@@ -1,11 +1,7 @@
 import { FC } from "react"
+import { countProps } from "../types/taskCounter"
 
-type Props = {
-  total: number;
-  complete: number;
-  incomplete: number;
-}
-export const TaskCounter: FC<Props> = (props) => {
+export const TaskCounter: FC<countProps> = (props) => {
   const { total, complete, incomplete } = props
   return (
     <>
