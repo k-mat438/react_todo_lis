@@ -1,8 +1,14 @@
 import { FC } from "react"
-import { countProps } from "../types/taskCounter"
+import { todo } from "../types/todo";
 
-export const TaskCounter: FC<countProps> = (props) => {
-  const { total, complete, incomplete } = props
+type todos = {
+  todos: Array<todo>;
+}
+export const TaskCounter: FC<todos> = (props) => {
+  const { todos } = props
+  const total = todos.length
+  const complete = todos.filter(todo => todo.completed).length
+  const incomplete = todos.filter(todo => !todo.completed).length
   return (
     <div className="Area">
       <div className="counter">全てのタスク数: <span className="variable">{total}</span></div>
