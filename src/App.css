@@ -1,0 +1,67 @@
+h1 {
+  color: #333;
+  text-align: center;
+}
+
+.Area {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+
+.addInput {
+  width: 30%;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 8px;
+  margin: 5px;
+}
+
+button {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px;
+  margin: 5px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.counter {
+  padding: 0 3%;
+}
+
+.variable {
+  font-weight: bold;
+}
+
+ul {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.ToDo-item {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 7px;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.ToDo-item input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.ToDo-item p, .editInput {
+  flex-grow: 1;
+  margin: 0;
+}
+
+.ToDo-item button {
+  margin-left: 10px;
+}
